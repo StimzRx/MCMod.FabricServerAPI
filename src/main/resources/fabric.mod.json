@@ -1,29 +1,29 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "serverapi",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "ServerAPI",
+  "description": "Adds a server api to Fabric",
   "authors": [
-    "Me!"
+    "VenomCodeDev"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://github.com/VenomCodeDev/FabricServerAPI",
+    "sources": "https://github.com/VenomCodeDev/FabricServerAPI"
   },
 
-  "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "license": "MIT",
+  "icon": "assets/serverapi/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "dev.venomcode.serverapi.ServerAPIMod"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "serverapi.mixins.json"
   ],
 
   "depends": {
