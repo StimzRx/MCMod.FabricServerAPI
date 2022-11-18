@@ -6,6 +6,8 @@ A server api for fabric aiming to simplify server-side mods significantly.
    - A cancelable jump event for all ServerPlayerEntity
  - PlayerEvents.SNEAK
    - A cancelable sneak event for all ServerPlayerEntity
+ - PlayerEvents.BLOCK_BREAK
+   - A cancelable event for when a player breaks a block
 
 ### Future Goals
  - A "ServerPlayer" class that would abstract a lot of the more
