@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Entity.class)
 abstract class EntityMixin {
     @Inject(method = "setSneaking", at = @At("HEAD"), cancellable = true)
-    void injectSetSneaking(boolean sneaking, CallbackInfo ci) {
+    void hookSetSneaking(boolean sneaking, CallbackInfo ci) {
         if ((LivingEntity)(Object)this instanceof ServerPlayerEntity) {
             if(PlayerEvents.SNEAK.invoker().allowSneak((ServerPlayerEntity)(Object)this))
             {

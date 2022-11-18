@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(LivingEntity.class)
 abstract class LivingEntityMixin {
     @Inject(method = "jump", at=@At("HEAD"), cancellable = true)
-    void injectJump(CallbackInfo ci)
+    void hookJump(CallbackInfo ci)
     {
         if ((LivingEntity)(Object)this instanceof ServerPlayerEntity) {
             if(PlayerEvents.JUMP.invoker().allowJump((ServerPlayerEntity)(Object)this))
