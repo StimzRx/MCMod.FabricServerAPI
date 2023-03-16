@@ -1,4 +1,4 @@
-package dev.venomcode.serverapi.api.events;
+package dev.venomcode.serverapi.api.event;
 
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;

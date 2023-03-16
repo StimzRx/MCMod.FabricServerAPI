@@ -1,10 +1,9 @@
 package dev.venomcode.serverapi.mixin.interaction;
 
-import dev.venomcode.serverapi.api.events.PlayerEvents;
+import dev.venomcode.serverapi.api.event.PlayerEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.network.ServerPlayerInteractionManager;
 import net.minecraft.util.math.BlockPos;

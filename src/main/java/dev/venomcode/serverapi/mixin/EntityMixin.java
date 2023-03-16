@@ -1,6 +1,6 @@
 package dev.venomcode.serverapi.mixin;
 
-import dev.venomcode.serverapi.api.events.PlayerEvents;
+import dev.venomcode.serverapi.api.event.PlayerEvents;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.server.network.ServerPlayerEntity;

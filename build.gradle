@@ -1,6 +1,7 @@
 plugins {
 	id 'fabric-loom' version '1.1-SNAPSHOT'
 	id 'maven-publish'
+	id 'com.github.johnrengelman.shadow' version '7.0.0'
 }
 
 sourceCompatibility = JavaVersion.VERSION_17
@@ -16,6 +17,9 @@ repositories {
 	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
+	mavenCentral()
+	maven { url 'https://jitpack.io' }
+	maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
 }
 
 dependencies {
@@ -26,6 +30,11 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+	include(modImplementation('me.lucko:fabric-permissions-api:0.2-SNAPSHOT'))
+
+	shadow(implementation('org.spongepowered:configurate-hocon:4.1.2'))
+	shadow(implementation('com.github.fusesource:jansi:jansi-2.4.0'))
 }
 
 processResources {
@@ -52,6 +61,15 @@ jar {
 	from("LICENSE") {
 		rename { "${it}_${project.archivesBaseName}"}
 	}
+}
+shadowJar {
+	configurations = [project.configurations.shadow]
+	archiveClassifier.set("dev")
+	relocate "net.objecthunter", "de.siphalor.spiceoffabric.shadow.net.objecthunter"
+}
+remapJar {
+	dependsOn(shadowJar)
+	inputFile = tasks.shadowJar.archiveFile
 }
 
 // configure the maven publication
