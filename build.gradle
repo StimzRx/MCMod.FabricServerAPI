@@ -1,15 +1,15 @@
 plugins {
-	id 'fabric-loom' version '1.1-SNAPSHOT'
+	id 'fabric-loom' version '1.2-SNAPSHOT'
 	id 'maven-publish'
 	id 'com.github.johnrengelman.shadow' version '7.0.0'
 }
 
-sourceCompatibility = JavaVersion.VERSION_17
-targetCompatibility = JavaVersion.VERSION_17
-
-archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
+
+base {
+	archivesName = project.archives_base_name
+}
 
 repositories {
 	// Add repositories to retrieve artifacts from in here.
@@ -34,7 +34,9 @@ dependencies {
 	include(modImplementation('me.lucko:fabric-permissions-api:0.2-SNAPSHOT'))
 
 	shadow(implementation('org.spongepowered:configurate-hocon:4.1.2'))
-	shadow(implementation('com.github.fusesource:jansi:jansi-2.4.0'))
+
+	// The following is a ANSI API that I may or may not use in the future for bottles.
+	//shadow(implementation('com.github.fusesource:jansi:jansi-2.4.0'))
 }
 
 processResources {
@@ -55,6 +57,9 @@ java {
 	// if it is present.
 	// If you remove this line, sources will not be generated.
 	withSourcesJar()
+
+	sourceCompatibility = JavaVersion.VERSION_17
+	targetCompatibility = JavaVersion.VERSION_17
 }
 
 jar {

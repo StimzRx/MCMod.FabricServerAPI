@@ -25,7 +25,7 @@ public class CommandPlugin {
         dispatcher.register(literal("plugin")
                 .requires( src -> src.hasPermissionLevel(4) || Permissions.require("serverapi.commands.plugin", false).test(src) )
                 .executes( ctx -> {
-                    ctx.getSource().sendFeedback(Text.of("Usage: /plugin enable <name> | /plugin disable <name>"), false);
+                    ctx.getSource().sendFeedback(() -> Text.of("Usage: /plugin enable <name> | /plugin disable <name>"), false);
                     return Command.SINGLE_SUCCESS;
                 })
                 .then(literal("list")
@@ -54,7 +54,7 @@ public class CommandPlugin {
             }
         }
 
-        ctx.getSource().sendFeedback(replyText, false);
+        ctx.getSource().sendFeedback(() -> replyText, false);
 
         return Command.SINGLE_SUCCESS;
     }
@@ -63,7 +63,7 @@ public class CommandPlugin {
         FabricPlugin plugin = ServerAPI.getPlugin(pluginName);
         if(plugin == null)
         {
-            ctx.getSource().sendFeedback(Text.of("Unable to find plugin '" + pluginName + "'."), false);
+            ctx.getSource().sendFeedback(() -> Text.of("Unable to find plugin '" + pluginName + "'."), false);
         }
 
         plugin.onEnable();
@@ -74,7 +74,7 @@ public class CommandPlugin {
         FabricPlugin plugin = ServerAPI.getPlugin(pluginName);
         if(plugin == null)
         {
-            ctx.getSource().sendFeedback(Text.of("Unable to find plugin '" + pluginName + "'."), false);
+            ctx.getSource().sendFeedback(() -> Text.of("Unable to find plugin '" + pluginName + "'."), false);
         }
 
         plugin.onDisable();
