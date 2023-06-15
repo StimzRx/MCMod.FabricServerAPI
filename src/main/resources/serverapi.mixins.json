@@ -1,14 +1,15 @@
 {
   "required": true,
-  "minVersion": "0.8",
   "package": "dev.venomcode.serverapi.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "EntityMixin",
-    "LivingEntityMixin",
+    "entity.MixinEntity",
+    "entity.MixinLivingEntity",
+    "entity.player.MixinServerPlayerEntity",
+    "handlers.MixinPlayerManager",
+    "handlers.MixinScreenHandler",
+    "handlers.MixinServerPlayNetworkHandler",
     "interaction.ServerPlayerInteractionManagerMixin"
-  ],
-  "client": [
   ],
   "injectors": {
     "defaultRequire": 1

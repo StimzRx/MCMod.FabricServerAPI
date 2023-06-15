@@ -1,6 +1,7 @@
-package dev.venomcode.serverapi.mixin;
+package dev.venomcode.serverapi.mixin.entity;
 
-import dev.venomcode.serverapi.api.event.PlayerEvents;
+import dev.venomcode.serverapi.api.event.SAPIPlayerEvents;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -8,13 +9,12 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(LivingEntity.class)
-abstract class LivingEntityMixin {
-    @Inject(method = "jump", at=@At("HEAD"), cancellable = true)
-    void hookJump(CallbackInfo ci)
-    {
+@Mixin(Entity.class)
+abstract class MixinEntity {
+    @Inject(method = "setSneaking", at = @At("HEAD"), cancellable = true)
+    void hookSetSneaking(boolean sneaking, CallbackInfo ci) {
         if ((LivingEntity)(Object)this instanceof ServerPlayerEntity) {
-            if(PlayerEvents.JUMP.invoker().allowJump((ServerPlayerEntity)(Object)this))
+            if(!SAPIPlayerEvents.SNEAK.invoker().allowSneak((ServerPlayerEntity)(Object)this))
             {
                 ci.cancel();
             }

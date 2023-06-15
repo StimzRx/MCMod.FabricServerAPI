@@ -62,6 +62,6 @@ public final class ServerUtils {
 
     public static MutableText getText(String text, Formatting... formattings)
     {
-        return (MutableText)Text.of(text).getWithStyle( Style.EMPTY.withItalic(false).withFormatting(formattings) );
+        return Text.literal(text).setStyle( Style.EMPTY.withFormatting(formattings) );
     }
 }

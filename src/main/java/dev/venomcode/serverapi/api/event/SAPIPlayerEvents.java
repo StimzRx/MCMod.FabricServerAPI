@@ -6,7 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 
-public final class PlayerEvents {
+public final class SAPIPlayerEvents {
     /**
      * An event that is called when a player jumps.
      */

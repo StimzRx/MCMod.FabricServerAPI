@@ -17,9 +17,9 @@ repositories {
 	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
-	mavenCentral()
-	maven { url 'https://jitpack.io' }
+
 	maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+	maven { url 'https://jitpack.io' }
 }
 
 dependencies {
@@ -36,7 +36,7 @@ dependencies {
 	shadow(implementation('org.spongepowered:configurate-hocon:4.1.2'))
 
 	// The following is a ANSI API that I may or may not use in the future for bottles.
-	//shadow(implementation('com.github.fusesource:jansi:jansi-2.4.0'))
+	shadow(implementation('com.github.fusesource:jansi:jansi-2.4.0'))
 }
 
 processResources {
@@ -48,7 +48,6 @@ processResources {
 }
 
 tasks.withType(JavaCompile).configureEach {
-	// Minecraft 1.18 (1.18-pre2) upwards uses Java 17.
 	it.options.release = 17
 }
 
