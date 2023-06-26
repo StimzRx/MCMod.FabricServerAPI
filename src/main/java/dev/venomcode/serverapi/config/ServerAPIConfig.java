@@ -19,8 +19,13 @@ public class ServerAPIConfig {
     @Comment("Enables the sneak+F hotkey to bring up the menu")
     private boolean enableHotkey = true;
 
+    @Setting(value = "teleport windup time")
+    @Comment("Sets the time(in seconds) it will take to complete a teleport.")
+    private int teleportWindupTime = 10;
+
     public boolean getHotkeyEnabled()
     {
         return enableHotkey;
     }
+    public int getTeleportWindupTime() { return teleportWindupTime; }
 }

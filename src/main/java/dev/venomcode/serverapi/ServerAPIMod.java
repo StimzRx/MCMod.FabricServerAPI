@@ -4,16 +4,21 @@ import dev.venomcode.serverapi.api.ServerAPI;
 import dev.venomcode.serverapi.commands.server.ServerCommand;
 import dev.venomcode.serverapi.config.ServerAPIConfig;
 import dev.venomcode.serverapi.data.SAPIData;
+import dev.venomcode.serverapi.items.SoulShardItem;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.RespawnAnchorBlock;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import org.fusesource.jansi.AnsiConsole;
 import org.slf4j.Logger;
@@ -78,6 +83,8 @@ public class ServerAPIMod implements ModInitializer {
                 }
             }
         }));
+
+        Registry.register(Registries.ITEM, new Identifier("serverapi:soul_shard"), new SoulShardItem(new FabricItemSettings().maxCount(1)));
     }
 
     public static ServerAPIConfig getConfig() {

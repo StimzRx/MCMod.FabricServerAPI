@@ -20,6 +20,7 @@ repositories {
 
 	maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
 	maven { url 'https://jitpack.io' }
+	maven { url 'https://maven.nucleoid.xyz' }
 }
 
 dependencies {
@@ -32,6 +33,9 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	include(modImplementation('me.lucko:fabric-permissions-api:0.2-SNAPSHOT'))
+
+	include(modImplementation("eu.pb4:polymer-core:${project.polymer_version}"))
+	include(modImplementation("xyz.nucleoid:server-translations-api:${project.server_translations_api_version}"))
 
 	shadow(implementation('org.spongepowered:configurate-hocon:4.1.2'))
 

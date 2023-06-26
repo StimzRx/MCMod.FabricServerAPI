@@ -22,8 +22,8 @@ import net.minecraft.util.ClickType;
 import net.minecraft.util.Formatting;
 import org.jetbrains.annotations.Nullable;
 
-public class TeleportsMenuScreen extends ServerScreenHandler {
-    protected TeleportsMenuScreen(int syncId, PlayerInventory playerInventory) {
+public class PlayerTeleportsMenuScreen extends ServerScreenHandler {
+    protected PlayerTeleportsMenuScreen(int syncId, PlayerInventory playerInventory) {
         super(syncId, playerInventory, 3);
     }
 
@@ -82,4 +82,5 @@ public class TeleportsMenuScreen extends ServerScreenHandler {
 
         return SAPI_SLOT_CLICK.DENY_CLICK;
     }
+
 }
