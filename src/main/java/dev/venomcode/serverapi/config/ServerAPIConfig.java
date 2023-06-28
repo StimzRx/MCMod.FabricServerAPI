@@ -15,13 +15,13 @@ import java.nio.file.Path;
 @ConfigSerializable
 public class ServerAPIConfig {
 
-    @Setting(value = "enable hotkey menu")
+    @Setting("enable hotkey menu")
     @Comment("Enables the sneak+F hotkey to bring up the menu")
-    private boolean enableHotkey = true;
+    private boolean enableHotkey = false;
 
-    @Setting(value = "teleport windup time")
+    @Setting("teleport windup time")
     @Comment("Sets the time(in seconds) it will take to complete a teleport.")
-    private int teleportWindupTime = 10;
+    private int teleportWindupTime = 5;
 
     public boolean getHotkeyEnabled()
     {
