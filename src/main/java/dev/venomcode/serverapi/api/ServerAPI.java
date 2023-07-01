@@ -22,7 +22,7 @@ public final class ServerAPI {
         return null;
     }
 
-    public static final String CONFIG_PATH = ".\\config\\";
+    public static final String CONFIG_PATH = "./config/";
 
     public final static class Logger
     {
