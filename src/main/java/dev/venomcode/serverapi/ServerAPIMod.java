@@ -4,7 +4,6 @@ import dev.venomcode.serverapi.api.ServerAPI;
 import dev.venomcode.serverapi.commands.server.ServerCommand;
 import dev.venomcode.serverapi.config.ServerAPIConfig;
 import dev.venomcode.serverapi.data.SAPIData;
-import dev.venomcode.serverapi.items.SoulShardItem;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
@@ -13,13 +12,11 @@ import net.minecraft.block.BedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.RespawnAnchorBlock;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryKey;
 import org.fusesource.jansi.AnsiConsole;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,10 +56,10 @@ public class ServerAPIMod implements ModInitializer {
             boolean isAnchorBlock = false;
             if(oldPlayer.getSpawnPointPosition() != null)
             {
-                BlockState spawnBlockState = oldPlayer.getServerWorld().getBlockState(oldPlayer.getSpawnPointPosition());
+                BlockState spawnBlockState = oldPlayer.getWorld().getBlockState(oldPlayer.getSpawnPointPosition());
                 Block spawnBlock = spawnBlockState.getBlock();
 
-                isBedBlock = (spawnBlock instanceof BedBlock && BedBlock.isBedWorking(oldPlayer.getServerWorld()));
+                isBedBlock = (spawnBlock instanceof BedBlock && BedBlock.isBedWorking(oldPlayer.getWorld()));
                 isAnchorBlock = (spawnBlock instanceof RespawnAnchorBlock && RespawnAnchorBlock.isNether(newPlayer.getWorld()));
             }
 
@@ -74,17 +71,15 @@ public class ServerAPIMod implements ModInitializer {
                     double sX = data.getSpawnPos().x;
                     double sY = data.getSpawnPos().y;
                     double sZ = data.getSpawnPos().z;
-                    ServerWorld sWorld = newPlayer.server.getWorld(RegistryKey.of(RegistryKeys.WORLD, data.getSpawnDimension()));
+                    ServerWorld sWorld = newPlayer.server.getWorld(RegistryKey.of(Registry.WORLD_KEY, data.getSpawnDimension()));
 
                     BlockPos blkPos = new BlockPos((int)Math.round(data.getSpawnPos().x), (int)Math.round(data.getSpawnPos().y), (int)Math.round(data.getSpawnPos().z));
-                    newPlayer.setSpawnPoint(RegistryKey.of(RegistryKeys.WORLD, data.getSpawnDimension()), blkPos, 0, true, false);
+                    newPlayer.setSpawnPoint(RegistryKey.of(Registry.WORLD_KEY, data.getSpawnDimension()), blkPos, 0, true, false);
 
                     newPlayer.teleport(sWorld, sX, sY, sZ, 0f, 0f);
                 }
             }
         }));
-
-        Registry.register(Registries.ITEM, new Identifier("serverapi:soul_shard"), new SoulShardItem(new FabricItemSettings().maxCount(1)));
     }
 
     public static ServerAPIConfig getConfig() {

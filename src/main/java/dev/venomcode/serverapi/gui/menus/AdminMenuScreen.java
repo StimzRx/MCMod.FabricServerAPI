@@ -9,13 +9,10 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.SlotActionType;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.ClickType;
 import net.minecraft.util.Formatting;
@@ -65,7 +62,7 @@ public class AdminMenuScreen extends ServerScreenHandler {
             serverPlayer.closeHandledScreen();
 
             SAPIData data = SAPIData.getState(serverPlayer.server);
-            data.setSpawn(serverPlayer.getPos(), serverPlayer.getServerWorld().getRegistryKey().getValue());
+            data.setSpawn(serverPlayer.getPos(), serverPlayer.getWorld().getRegistryKey().getValue());
             serverPlayer.sendMessage(ServerUtils.getText("Set spawn!", Formatting.GREEN, Formatting.ITALIC), true);
         }
 

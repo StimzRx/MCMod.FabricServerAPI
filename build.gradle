@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '1.2-SNAPSHOT'
+	id 'fabric-loom' version '1.1-SNAPSHOT'
 	id 'maven-publish'
 	id 'com.github.johnrengelman.shadow' version '7.0.0'
 }
@@ -32,10 +32,7 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	include(modImplementation('me.lucko:fabric-permissions-api:0.2-SNAPSHOT'))
-
-	include(modImplementation("eu.pb4:polymer-core:${project.polymer_version}"))
-	include(modImplementation("xyz.nucleoid:server-translations-api:${project.server_translations_api_version}"))
+	include(modApi('me.lucko:fabric-permissions-api:0.2-SNAPSHOT'))
 
 	shadow(implementation('org.spongepowered:configurate-hocon:4.1.2'))
 

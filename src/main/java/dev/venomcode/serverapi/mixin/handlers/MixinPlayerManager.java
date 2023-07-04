@@ -2,14 +2,14 @@ package dev.venomcode.serverapi.mixin.handlers;
 
 import dev.venomcode.serverapi.data.SAPIData;
 import net.minecraft.network.ClientConnection;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.PlayerManager;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryKey;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -28,7 +28,7 @@ abstract class MixinPlayerManager {
         if(data.isSpawnSet())
         {
             BlockPos blkPos = new BlockPos((int)Math.round(data.getSpawnPos().x), (int)Math.round(data.getSpawnPos().y), (int)Math.round(data.getSpawnPos().z));
-            player.setSpawnPoint(RegistryKey.of(RegistryKeys.WORLD, data.getSpawnDimension()), blkPos, 0, true, false);
+            player.setSpawnPoint(RegistryKey.of(Registry.WORLD_KEY, data.getSpawnDimension()), blkPos, 0, true, false);
         }
     }
 }

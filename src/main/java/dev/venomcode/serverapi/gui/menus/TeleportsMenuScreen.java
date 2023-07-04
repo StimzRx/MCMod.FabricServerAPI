@@ -10,8 +10,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.SlotActionType;
@@ -20,6 +18,8 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.ClickType;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryKey;
 import org.jetbrains.annotations.Nullable;
 
 public class TeleportsMenuScreen extends ServerScreenHandler {
@@ -70,7 +70,7 @@ public class TeleportsMenuScreen extends ServerScreenHandler {
             {
                 IPlayerTeleporter playerTeleporter = (IPlayerTeleporter) serverPlayer;
 
-                ServerWorld sWorld = serverPlayer.server.getWorld(RegistryKey.of(RegistryKeys.WORLD, data.getSpawnDimension()));
+                ServerWorld sWorld = serverPlayer.server.getWorld(RegistryKey.of(Registry.WORLD_KEY, data.getSpawnDimension()));
 
                 playerTeleporter.setTeleportTarget(data.getSpawnPos(), ServerAPIMod.getConfig().getTeleportWindupTime(), sWorld);
             }

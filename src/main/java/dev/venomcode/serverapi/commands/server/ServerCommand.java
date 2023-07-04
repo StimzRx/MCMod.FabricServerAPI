@@ -40,7 +40,7 @@ public class ServerCommand {
         if(handStack != ItemStack.EMPTY)
         {
             ServerUtils.setStackModelData(handStack, id);
-            ctx.getSource().sendFeedback(() -> ServerUtils.getText("Set CustomModelData to " + id, Formatting.GREEN), false);
+            ctx.getSource().sendFeedback(ServerUtils.getText("Set CustomModelData to " + id, Formatting.GREEN), false);
         }
 
         return Command.SINGLE_SUCCESS;
