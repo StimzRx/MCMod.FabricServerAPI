@@ -32,7 +32,7 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	include(modApi('me.lucko:fabric-permissions-api:0.2-SNAPSHOT'))
+	modImplementation('me.lucko:fabric-permissions-api:0.2-SNAPSHOT')
 
 	shadow(implementation('org.spongepowered:configurate-hocon:4.1.2'))
 
