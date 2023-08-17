@@ -14,9 +14,10 @@ abstract class MixinEntity {
     @Inject(method = "setSneaking", at = @At("HEAD"), cancellable = true)
     void hookSetSneaking(boolean sneaking, CallbackInfo ci) {
         if ((LivingEntity)(Object)this instanceof ServerPlayerEntity) {
-            if(!SAPIPlayerEvents.SNEAK.invoker().allowSneak((ServerPlayerEntity)(Object)this))
-            {
-                ci.cancel();
+            if(sneaking) {
+                if(!SAPIPlayerEvents.SNEAK.invoker().allowSneak((ServerPlayerEntity)(Object)this)) {
+                    ci.cancel();
+                }
             }
         }
     }
